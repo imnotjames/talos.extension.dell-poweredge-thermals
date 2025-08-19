@@ -1,0 +1,12 @@
+name: dell-poweredge-fan-control
+container:
+  entrypoint: ./dell-poweredge-fan-control
+  args:
+    - watch
+mounts:
+  - source: /dev/ipmi0
+    destination: /dev/ipmi0
+    type: bind
+    options:
+      - bind
+restart: always
