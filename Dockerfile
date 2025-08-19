@@ -1,4 +1,4 @@
-FROM ghcr.io/imnotjames/dell-poweredge-thermals:latest AS artifact
+FROM ghcr.io/imnotjames/dell-poweredge-thermals:v0.0.2 AS artifact
 
 FROM scratch AS extension
 
