@@ -1,4 +1,4 @@
-name: dell-poweredge-fan-control
+name: dell-poweredge-thermals
 container:
   entrypoint: ./dell-poweredge-thermals
   args:
