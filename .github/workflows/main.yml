@@ -47,7 +47,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           IMAGE_EXT: ghcr.io/imnotjames/talos.extension.dell-poweredge-thermals
-          TALOS_VERSION: "v1.10"
+          TALOS_VERSION: "v1.10.6"
           ARCH: amd64
           PROFILE: installer
         run: |
