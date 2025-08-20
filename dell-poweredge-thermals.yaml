@@ -1,5 +1,8 @@
 name: dell-poweredge-thermals
 container:
+  security:
+    writeableRootfs: false
+    writeableSysfs: true
   entrypoint: ./dell-poweredge-thermals
   args:
     - watch
@@ -9,6 +12,7 @@ mounts:
     type: bind
     options:
       - bind
+      - rw
 depends:
   - path: /dev/ipmi0
 restart: always
