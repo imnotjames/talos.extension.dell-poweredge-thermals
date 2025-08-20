@@ -9,4 +9,6 @@ mounts:
     type: bind
     options:
       - bind
+depends:
+  - path: /dev/ipmi0
 restart: always
