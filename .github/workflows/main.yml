@@ -48,9 +48,12 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           IMAGE_EXT: ghcr.io/imnotjames/talos.extension.dell-poweredge-thermals
           TALOS_VERSION: "v1.10.6"
+          EXT_VERSION: "main"
           ARCH: amd64
           PROFILE: installer
         run: |
+          docker pull ghcr.io/siderolabs/imager:${TALOS_VERSION}
+
           docker run \
             --rm \
             -t \
@@ -60,7 +63,7 @@ jobs:
             -v "$PWD/_out:/out" \
             "ghcr.io/siderolabs/imager:${TALOS_VERSION}" \
             --arch "${ARCH}" \
-            --system-extension-image ${IMAGE_EXT}:main \
+            --system-extension-image "${IMAGE_EXT}:${EXT_VERSION}" \
             installer
 
           docker load -i ./_out/installer-${ARCH}.tar
