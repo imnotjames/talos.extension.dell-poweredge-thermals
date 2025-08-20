@@ -7,4 +7,6 @@ COPY manifest.yaml /
 
 COPY --from=artifact /dell-poweredge-thermals /rootfs/usr/local/lib/containers/dell-poweredge-thermals/dell-poweredge-thermals
 
+WORKDIR /rootfs/usr/local/lib/containers/dell-poweredge-thermals
+
 ENTRYPOINT ["./dell-poweredge-thermals"]
