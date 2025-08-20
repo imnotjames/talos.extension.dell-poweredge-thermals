@@ -52,8 +52,6 @@ jobs:
           ARCH: amd64
           PROFILE: installer
         run: |
-          docker pull ghcr.io/siderolabs/imager:${TALOS_VERSION}
-
           docker run \
             --rm \
             -t \
@@ -69,7 +67,7 @@ jobs:
           LOADED_TAG=$(docker load -i ./_out/installer-${ARCH}.tar | awk '{print $3}')
 
           docker tag \
-            ${LOADED_TAG}:${TALOS_VERSION} \
-            ${IMAGE_EXT}/installer:${TALOS_VERSION}
+            "${LOADED_TAG}" \
+            "${IMAGE_EXT}/installer:${TALOS_VERSION}"
 
           docker push ${IMAGE_EXT}/installer:${TALOS_VERSION}
