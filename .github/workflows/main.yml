@@ -42,3 +42,31 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Create Installer
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          IMAGE_EXT: ghcr.io/imnotjames/talos.extension.dell-poweredge-thermals
+          TALOS_VERSION: 1.10
+          ARCH: amd64
+          PROFILE: installer
+        run: |
+          docker run \
+            --rm \
+            -t \
+            -v /dev:/dev \
+            --privileged \
+            -e GITHUB_TOKEN=${GH_TOKEN} \
+            -v "$PWD/_out:/out" \
+            "ghcr.io/siderolabs/imager:${TALOS_VERSION}" \
+            --arch "${ARCH}" \
+            --system-extension-image ${IMAGE_EXT}:main \
+            installer
+
+          docker load -i ./_out/installer-${ARCH}.tar
+
+          docker tag \
+            ghcr.io/siderolabs/installer:${TALOS_VERSION} \
+            ${IMAGE_EXT}/installer:${TALOS_VERSION}
+
+          docker push ${IMAGE_EXT}/installer:${TALOS_VERSION}
