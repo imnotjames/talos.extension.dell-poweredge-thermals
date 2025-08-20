@@ -66,10 +66,10 @@ jobs:
             --system-extension-image "${IMAGE_EXT}:${EXT_VERSION}" \
             installer
 
-          docker load -i ./_out/installer-${ARCH}.tar
+          LOADED_TAG=$(docker load -i ./_out/installer-${ARCH}.tar | awk '{print $3}')
 
           docker tag \
-            ghcr.io/siderolabs/installer:${TALOS_VERSION} \
+            ${LOADED_TAG}:${TALOS_VERSION} \
             ${IMAGE_EXT}/installer:${TALOS_VERSION}
 
           docker push ${IMAGE_EXT}/installer:${TALOS_VERSION}
