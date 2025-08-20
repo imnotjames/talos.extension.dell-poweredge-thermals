@@ -1,6 +1,6 @@
 name: dell-poweredge-fan-control
 container:
-  entrypoint: ./dell-poweredge-fan-control
+  entrypoint: ./dell-poweredge-thermals
   args:
     - watch
 mounts:
