@@ -11,7 +11,8 @@ mounts:
     destination: /dev/ipmi0
     type: bind
     options:
-      - bind
+      - rshared
+      - rbind
       - rw
 depends:
   - path: /dev/ipmi0
