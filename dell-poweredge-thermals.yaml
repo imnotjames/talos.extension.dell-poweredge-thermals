@@ -14,4 +14,3 @@ container:
 depends:
   - path: /dev/ipmi0
 restart: always
-logToConsole: true
