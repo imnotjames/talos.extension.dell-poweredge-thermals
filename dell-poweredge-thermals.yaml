@@ -3,14 +3,14 @@ container:
   entrypoint: ./dell-poweredge-thermals
   args:
     - watch
-mounts:
-  - source: /dev
-    destination: /dev
-    type: bind
-    options:
-      - rshared
-      - rbind
-      - rw
+  mounts:
+    - source: /dev
+      destination: /dev
+      type: bind
+      options:
+        - rshared
+        - rbind
+        - rw
 depends:
   - path: /dev/ipmi0
 restart: always
